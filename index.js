@@ -27,7 +27,7 @@ mongoose.connection.on("connected", ()=>{
 
 //middlewares
 //middleware for insomnia/postman
-app.use(express.json())
+app.use(express.json());
 
 app.use("/auth", authRoute);
 app.use("/users", usersRoute);
