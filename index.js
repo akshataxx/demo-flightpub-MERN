@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import flightsRoute from "./routes/flights.js";
-import selectedflightRoute from "./routes/selectedflight.js";
+//import selectedflightRoute from "./routes/selectedflight.js";
 const app = express()
 dotenv.config()
 const connect = async () => {
@@ -26,10 +26,13 @@ mongoose.connection.on("connected", ()=>{
 })
 
 //middlewares
+//middleware for insomnia/postman
+app.use(express.json())
+
 app.use("/auth", authRoute);
 app.use("/users", usersRoute);
-app.use("/flights", flightRoute);
-app.use("/selectedflight", selectedflightRoute);
+app.use("/flights", flightsRoute);
+//app.use("/selectedflight", selectedflightRoute);
 
 app.listen(8800, ()=>{
     connect()

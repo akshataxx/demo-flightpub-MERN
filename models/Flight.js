@@ -4,31 +4,23 @@ import mongoose from "mongoose";
 const FlightSchema = new mongoose.Schema({
     airline:{
         type: String,
-        requied: true
+        required: true,
     },
-    flightno:{
+    flightId:{
         type: String,
-        required: true
+        required: true,
+    },
+    departureCity:{
+        type: String,
+        required: true,
     },
     arrivalCity:{
         type: String,
-        required: true
-    },
-    destinationCity:{
-        type: String,
-        required: true
-    },
-    arrivalDate:{
-        type: Date,
-        required: true
-    },
-    departureDate:{
-        type: Date,
-        required: true
+        required: true,
     },
     cheapestPrice:{
         type: Number,
-        required:true
+        required:true,
     },
 });
 
