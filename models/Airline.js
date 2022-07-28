@@ -1,36 +1,19 @@
 import mongoose from "mongoose";
 // const {Schema} =mongoose;
 
-const FlightSchema = new mongoose.Schema({
+const AirlineSchema = new mongoose.Schema({
     AirlineCode:{
         type: String,
         required: true,
     },
-    FlightNumber:{
+    AirlineName:{
         type: String,
         required: true,
     },
-    DepartureCode:{
+    CountryCode3:{
         type: String,
         required: true,
     },
-    StopoverCode:{
-        type: String,
-    },
-    DestinationCode:{
-        type: String,
-        required: true,
-    },
-    PlaneCode:{
-        type: String,
-        required: true,
-    },
-    Duration:{
-        type: Number,
-        required: true,
-    },
-
-
     /*flightId:{
         type: String,
         required: true,
@@ -49,4 +32,4 @@ const FlightSchema = new mongoose.Schema({
     },*/
 });
 
-export default mongoose.model("Flight", FlightSchema)
+export default mongoose.model("Airline", AirlineSchema)

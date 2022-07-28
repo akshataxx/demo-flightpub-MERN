@@ -1,36 +1,32 @@
-import express from "express";
+import req from "express/lib/request.js";
+import res from "express/lib/response.js";
 import Flight from "../models/Flight.js";
-const router = express.Router();
 
-//All da CRUD commands for database
-//Download postman or insomnia whatever doesn't matter
 
-//Create
-router.post("/", async(req,res)=>{
+export const createFlight = async (req, res)=>{
 
     const newFlight = new Flight(req.body);
     try{
 
         // console.log(req);
         const savedFlight= await newFlight.save()
-            res.status(200).json(savedFlight);
+        res.status(200).json(savedFlight);
     }catch(err){
         res.status(500).json(err);
     }
-});
-//Update
-router.put("/:id", async(req,res)=>{
+}
+
+export const updateFlight = async (req, res)=>{
     try{
 
-        console.log(req);
+        //console.log(req);
         const updatedFlight= await Flight.findByIdAndUpdate(req.params.id, {$set: req.body},{new:true});
         res.status(200).json(updatedFlight);
     }catch(err){
         res.status(500).json(err);
-    }
-});
-//Delete
-router.delete("/:id", async(req,res)=>{
+    }}
+
+export const deleteFlight = async (req, res)=>{
     try{
 
         // console.log(req);
@@ -39,9 +35,9 @@ router.delete("/:id", async(req,res)=>{
     }catch(err){
         res.status(500).json(err);
     }
-});
-//Get
-router.get("/:id", async(req,res)=>{
+}
+
+export const getFlight = async (req, res)=>{
     try{
 
         // console.log(req);
@@ -50,18 +46,19 @@ router.get("/:id", async(req,res)=>{
     }catch(err){
         res.status(500).json(err);
     }
-});
+}
 
-//Getall
-router.get("/", async(req,res)=>{
+//just trying something out with using a next function for error handling and declaring function
+// in another js and calling it as opposed to using json
+//ignore pls until i sort out the error handling xoxo
+
+export const getallFlight = async (req, res, next)=>{
     try{
 
         // console.log(req);
         const flights= await Flight.find();
         res.status(200).json(flights);
     }catch(err){
-        res.status(500).json(err);
+        next(err)
     }
-});
-
-export default router;
+}
